@@ -121,9 +121,7 @@ def processOrder(request):
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
-       
 
-        
 
     else:
         customer, order = guestOrder(request, data)
@@ -144,3 +142,8 @@ def processOrder(request):
             zipcode = data['shipping']['zipcode'],
         )
     return JsonResponse('Payment complete!', safe=False)
+
+# def product_view(request):
+
+#     context = {}
+#     return render(request, '', context)
